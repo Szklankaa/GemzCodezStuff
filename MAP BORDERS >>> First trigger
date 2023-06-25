@@ -1,0 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BackBlockers : MonoBehaviour
+{
+    public Animator BlockUIanim;
+    public Transform PlayerTrans;
+    public NextBlock nextBlockScript;
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            BlockUIanim.SetBool("IsInBlock", true);
+            nextBlockScript.playerSavedPos = PlayerTrans.position;
+            PlayerTrans.gameObject.GetComponent<Motion>().IsSprint = false;
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            BlockUIanim.SetBool("IsInBlock", false);
+        }
+    }
+}
