@@ -1,0 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WaitForDelete : MonoBehaviour
+{
+    public Animator ThisObj;
+    // Start 
+    void Start()
+    {
+        StartCoroutine(Wait1());
+    }
+    IEnumerator Wait1()
+    {
+        yield return new WaitForSecondsRealtime(4);
+        ThisObj.Play("NextItem2", 0, 0.0f);
+    }
+}
