@@ -1,0 +1,49 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Rendering;
+using TMPro;
+
+public class lookin : MonoBehaviour
+{
+    public float mouseSens = 100f;
+
+    public Transform playerBody;
+    float xRotation = 0f;
+    float yVelo1;
+    public bool IsCanLookin;
+
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        StartCoroutine(RefreshCurveToDoz());
+        IsCanLookin = true;
+    }
+// Only for using UI Curve Script VVV (Refreshing curve of ui    Y  E  S     )
+#region Refreshhhhh
+    IEnumerator RefreshCurveToDoz()
+    {
+        yield return new WaitForSeconds(3f);
+        StartCoroutine(RefreshCurveToDoz2());
+    }
+    IEnumerator RefreshCurveToDoz2()
+    {
+        yield return new WaitForSeconds(0.3f);
+    }
+#endregion
+
+    void Update()
+    {
+        float mouseX = Input.GetAxis("Mouse X") * mouseSens * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
+
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -73f, 65f);
+
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        if (IsCanLookin == true)
+        {
+            playerBody.Rotate(Vector3.up * mouseX);
+        }
+    }
+}
