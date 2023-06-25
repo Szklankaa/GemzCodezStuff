@@ -1,0 +1,23 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+
+public class ObjectTaking : MonoBehaviour
+{
+    public GameObject NewItemUI;
+    public GameObject ParentItem;
+    private Vector3 originalSize;
+
+    // Update 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            GameObject mChild = Instantiate(NewItemUI);
+            mChild.transform.parent = ParentItem.transform;
+            //mChild.GetComponent<TextMeshPro>().text = "Looted: GGFF";
+            Destroy(mChild, 4.7f);
+        }
+    }
+}
