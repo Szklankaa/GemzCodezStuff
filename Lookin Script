@@ -41,7 +41,7 @@ public class lookin : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -73f, 65f);
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        if (IsCanLookin == true) //Can be changed to mouseY to lol
+        if (IsCanLookin == true) //Can be changed to mouseY too lol
         {
             playerBody.Rotate(Vector3.up * mouseX);
         }
