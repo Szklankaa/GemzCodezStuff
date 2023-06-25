@@ -1,0 +1,33 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class NextBlock : MonoBehaviour
+{
+    public Animator BlockUIanim;
+    public Animator Trranssdf;
+    public Transform PlayerTrans;
+    public Vector3 playerSavedPos;
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            PlayerTrans.position = playerSavedPos;
+            StartCoroutine(GGo());
+            Trranssdf.gameObject.SetActive(true);
+            PlayerTrans.gameObject.GetComponent<Motion>().IsSprint = false;
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            BlockUIanim.SetBool("IsInBlock", false);
+        }
+    }
+    IEnumerator GGo()
+    {
+        yield return new WaitForSeconds(0.4f);
+        Trranssdf.gameObject.SetActive(false);
+    }
+}
